@@ -1,3 +1,55 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [:computer: ​Docker笔记](#computer-%E2%80%8Bdocker%E7%AC%94%E8%AE%B0)
+  - [:house:Docker的架构](#housedocker%E7%9A%84%E6%9E%B6%E6%9E%84)
+  - [:key:Docker命令](#keydocker%E5%91%BD%E4%BB%A4)
+  - [:house:Docker镜像的管理](#housedocker%E9%95%9C%E5%83%8F%E7%9A%84%E7%AE%A1%E7%90%86)
+    - [:point_right:关于docker镜像](#point_right%E5%85%B3%E4%BA%8Edocker%E9%95%9C%E5%83%8F)
+    - [:point_right:获取远程registry的镜像](#point_right%E8%8E%B7%E5%8F%96%E8%BF%9C%E7%A8%8Bregistry%E7%9A%84%E9%95%9C%E5%83%8F)
+    - [:point_right:镜像制作的途径](#point_right%E9%95%9C%E5%83%8F%E5%88%B6%E4%BD%9C%E7%9A%84%E9%80%94%E5%BE%84)
+    - [:key:基于容器制作镜像](#key%E5%9F%BA%E4%BA%8E%E5%AE%B9%E5%99%A8%E5%88%B6%E4%BD%9C%E9%95%9C%E5%83%8F)
+  - [:house:docker容器网络](#housedocker%E5%AE%B9%E5%99%A8%E7%BD%91%E7%BB%9C)
+    - [:point_right:1. 封闭式容器(无虚拟网卡)](#point_right1-%E5%B0%81%E9%97%AD%E5%BC%8F%E5%AE%B9%E5%99%A8%E6%97%A0%E8%99%9A%E6%8B%9F%E7%BD%91%E5%8D%A1)
+    - [:point_right:2. 桥接式网络容器(默认)](#point_right2-%E6%A1%A5%E6%8E%A5%E5%BC%8F%E7%BD%91%E7%BB%9C%E5%AE%B9%E5%99%A8%E9%BB%98%E8%AE%A4)
+      - [:thinking:**注意**问题](#thinking%E6%B3%A8%E6%84%8F%E9%97%AE%E9%A2%98)
+    - [:point_right:3. 容器共享网络名称空间](#point_right3-%E5%AE%B9%E5%99%A8%E5%85%B1%E4%BA%AB%E7%BD%91%E7%BB%9C%E5%90%8D%E7%A7%B0%E7%A9%BA%E9%97%B4)
+    - [:point_right:4. 容器共享宿主机网络空间](#point_right4-%E5%AE%B9%E5%99%A8%E5%85%B1%E4%BA%AB%E5%AE%BF%E4%B8%BB%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4)
+  - [:house:Docker存储卷](#housedocker%E5%AD%98%E5%82%A8%E5%8D%B7)
+    - [:point_right:容器中使用Volume](#point_right%E5%AE%B9%E5%99%A8%E4%B8%AD%E4%BD%BF%E7%94%A8volume)
+    - [:point_right:共享存储卷](#point_right%E5%85%B1%E4%BA%AB%E5%AD%98%E5%82%A8%E5%8D%B7)
+  - [:house: Dockerfile](#house-dockerfile)
+    - [:point_right:环境变量替换](#point_right%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E6%9B%BF%E6%8D%A2)
+    - [:point_right:Dockerfile指令](#point_rightdockerfile%E6%8C%87%E4%BB%A4)
+      - [:key:FROM](#keyfrom)
+      - [MAINTANIER(depreacted)](#maintanierdepreacted)
+      - [LABEL:point_up:](#labelpoint_up)
+      - [COPY](#copy)
+      - [:thinking: ​**构建镜像的命令`build`**](#thinking-%E2%80%8B%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F%E7%9A%84%E5%91%BD%E4%BB%A4build)
+      - [:key:ADD](#keyadd)
+      - [WORKDIR](#workdir)
+      - [VOLUME](#volume)
+      - [EXPOSE](#expose)
+      - [:key:ENV](#keyenv)
+      - [:key:RUN](#keyrun)
+      - [:key:CMD](#keycmd)
+      - [:key:ENTRYPOINT](#keyentrypoint)
+      - [USER](#user)
+      - [HEALTHCHECK](#healthcheck)
+      - [SHELL](#shell)
+      - [STOPFIGNAL](#stopfignal)
+      - [AGE](#age)
+      - [ONBUILD](#onbuild)
+  - [:house:Docker私有registry](#housedocker%E7%A7%81%E6%9C%89registry)
+    - [:point_right:Docker Compose](#point_rightdocker-compose)
+  - [:house:Docker资源限制](#housedocker%E8%B5%84%E6%BA%90%E9%99%90%E5%88%B6)
+    - [:point_right:memory](#point_rightmemory)
+    - [:point_right: CPU](#point_right-cpu)
+    - [:key:查看容器占用的资源](#key%E6%9F%A5%E7%9C%8B%E5%AE%B9%E5%99%A8%E5%8D%A0%E7%94%A8%E7%9A%84%E8%B5%84%E6%BA%90)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # :computer: ​Docker笔记
 
 ## :house:Docker的架构
