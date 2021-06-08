@@ -2,12 +2,13 @@
 
 ## 目录
 
-- [computer](./computer)
+- [computer](./computer/README.md)
+  - [Docker](./computer/Docker/README.md)
+  - [MongoDB](./computer/MongoDB/README.md)
+  - [Java](./computer/Java/README.md)
+  - [Others](./others/README.md)
 
-  - [Docker](./computer/Docker)
-  - [MongoDB](./computer/MongoDB)
-
-- [books](./books)
+- [books](./books/README.md)
 
   这是我的个人知识库，里面记录着我所学习的知识笔记，比如计算机网课笔记、书籍笔记、书籍摘抄等等，
 
