@@ -1,10 +1,8 @@
-# Yolo系列学习笔记
+# RCNN网络家族简介
 
-Road Map:
 ```mermaid
 graph LR;
-RCNN-->fast-RCNN-->1[faster-RCNN]-->Mask-RCNN;
-1-->Yolov1-->Yolov2-->Yolov3-->Yolov4--> Yolov5;
+    rcnn(RCNN)-->fast-rcnn(Fast-RCNN)-->faster-rcnn(Faster-RCNN)-->mask-rcnn(Mask-RCNN)
 ```
 
 ## RCNN
@@ -13,6 +11,11 @@ RCNN-->fast-RCNN-->1[faster-RCNN]-->Mask-RCNN;
 
 <img src="imgs/rcnn2.png" alt="rcnn2" style="zoom: 50%;" />
 
+传统的滑动窗口算法，计算量巨大，RCNN为了解决这个问题，提出了`region proposal`(候选区域)这个概念。
+
+具体的流程如下：
+1. 对于一张图像，
+
 ## Fast-RCNN
 
 <img src="imgs/fast-rcnn.png" alt="fast-rcnn" style="zoom: 50%;" />
@@ -20,4 +23,7 @@ RCNN-->fast-RCNN-->1[faster-RCNN]-->Mask-RCNN;
 ## Faster-RCNN
 
 <img src="imgs/faster-rcnn.png" alt="faster-rcnn" style="zoom:33%;" />
+
+
+
 
